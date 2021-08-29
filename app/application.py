@@ -1,14 +1,18 @@
 
-"""from linebot import (
+from linebot import (
     LineBotApi, WebhookHandler
-)"""
+)
 
 import textCtrl
 import getHTML as gH
 import database as db
-#import message
+import message
 
 import datetime as dt
+
+import os
+from os.path import join,dirname
+from dotenv import load_dotenv
 
 #初期化
 host=""
@@ -27,12 +31,12 @@ accessinfo += ' password='+passw
 
 textCtr = textCtrl.textChangeArray()
 arrayCtr = textCtrl.arrayChangeText()
-#regiDb = db.databaseCtrl(accessinfo)
-#statusDb = db.statusCtrl(accessinfo)
-#otherDb = db.otherThings(accessinfo)
-#mess = message.messages()
+regiDb = db.databaseCtrl(accessinfo)
+statusDb = db.statusCtrl(accessinfo)
+otherDb = db.otherThings(accessinfo)
+mess = message.messages()
 
-#line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
+line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
 
 
 
@@ -177,36 +181,4 @@ class mainApp:
 
 
 
-
-
-
-
-
-
-
-
-
-
-host = "ec2-52-22-161-59.compute-1.amazonaws.com"
-name = "dcr0gm4fmurj28"
-pasw = "9e85c7f22d1f66c9abae208c1992839a08bd096b71e3be7c0b792c011fe2dfb8"
-port = "5432"
-url = "postgres://nhgyavmxoajgzn:9e85c7f22d1f66c9abae208c1992839a08bd096b71e3be7c0b792c011fe2dfb8@ec2-52-22-161-59.compute-1.amazonaws.com:5432/dcr0gm4fmurj28"
-user = "nhgyavmxoajgzn"
-
-def makeKey(host,port,dbname,user,passw):
-    accessinfo = ''
-    accessinfo += 'host='+host
-    accessinfo += ' port='+port
-    accessinfo += ' dbname='+dbname
-    accessinfo += ' user='+user
-    accessinfo += ' password='+passw
-    return accessinfo
-
-
-access = makeKey(host,port,name,user,pasw)
-
-regiDb = db.databaseCtrl(access)
-statusDb = db.statusCtrl(access)
-otherDb = db.otherThings(access)
 
